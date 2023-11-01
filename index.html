@@ -1,0 +1,1098 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<style>
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+}
+
+
+/* common code here */
+.container{
+    max-width: 1100px;
+    margin: auto;
+}
+
+section{
+    padding: 80px 0;
+}
+
+body,html{
+    scroll-behavior: smooth;
+}
+
+body{
+    background: #FFFF;
+}
+
+.title{
+    width: 100%;
+    text-align: center;
+    font-size: 2.5rem;
+    text-transform: uppercase;
+    font-weight: 500;
+}
+
+.line{
+    width: 80px;
+    background: #0078ff;
+    height: 4px;
+    margin: 0 auto;
+    margin-top: 10px;
+}
+
+.menu-btn{
+    color: white;
+    font-size: 23px;
+    cursor: pointer;
+    display: none;
+}
+
+.scrollbtn{
+    height: 40px;
+    width: 40px;
+    position: fixed;
+    right: 20px;
+    bottom: 40px;
+    background: #0078ff;
+    padding: 8px;
+    border: none;
+    outline: none;
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 500;
+    pointer-events: auto;
+}
+
+.scrollbtn i{
+    text-align: center;
+    font-size: 20px;
+    color: white;
+}
+
+/* navbar styling */
+.navbar{
+    position: fixed;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 2rem 8rem;
+    z-index: 500;
+    transition: 0.4s;
+}
+
+.navbar.sticky{
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background: white;
+    color: #0078ff;
+    padding: 1.1rem 8rem;
+    box-shadow: 0px 6px 9px 0px rgb(0 0 0 /6%);
+}
+
+.navbar .logo a{
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 30px;
+    color: white;
+}
+
+.navbar.sticky .logo a{
+    color: #0078ff;
+}
+
+.navbar .menu li{
+    list-style: none;
+    display: inline-block;
+    margin-left: 35px;
+    position: relative;
+}
+
+.navbar .menu li a{
+    display: block;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 600;
+    color: white;
+}
+
+.navbar.sticky .menu li a{
+    color: #0078ff;
+}
+
+.navbar .menu li a::before{
+    content: "";
+    position: absolute;
+    width: 0%;
+    left: 0;
+    bottom: -10px;
+    height: 2px;
+    background: white;
+    transition: 0.2s;
+}
+
+.navbar.sticky .menu li a::before{
+    background: #0078ff;
+}
+
+.navbar .menu li a:hover:before{
+    width: 35px;
+}
+
+/* home styling */
+.home{
+    position: relative;
+    left: 0;
+    top: 0;
+    height: 100vh;
+    background: linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.8)), url(images/intro-bg.jpg) center center/cover no-repeat;
+    background-attachment: fixed;
+    color: white;
+}
+
+.home .home-content{
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.home .home-content h1{
+    font-size: 4.2rem;
+    margin-bottom: 1.5rem;
+}
+
+.home .home-content span{
+    font-size: 45px;
+}
+
+/* about me styling */
+.about-content{
+    background: white;
+    width: 100%;
+    padding: 2.5rem 3rem;
+    display: flex;
+    box-shadow: 0 1px 1px 0 rgb(0 0 0 /6%), 0 2px 5px 0 rgb(0 0 0 / 20%);
+}
+
+.about-content .info{
+    width: 50%;
+    padding: 5px;
+    display: flex;
+    flex-direction: column;
+}
+
+.about-content .info .personal{
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+.about-content .info .personal .photo{
+    width: 40%;
+    display: flex;
+}
+
+.about-content .info .personal .photo img{
+    border-radius: 5px;
+}
+
+.about-content .info .personal .name{
+    align-items: flex-start;
+    width: 60%;
+}
+
+.about-content .info .personal .name p{
+    margin-bottom: 15px;
+    font-size: 18px;
+}
+
+.about-content .info .personal .name p span{
+    font-weight: 600
+}
+
+.about-content .info .skills{
+    margin-top: 25px;
+}
+
+.about-content .info .skills h4{
+    font-size: 20px;
+    margin-bottom: 20px;
+}
+
+.about-content .info .skills .skill{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.about-content .info .skills .progress-line{
+    margin-top: 10px;
+    height: 8px;
+    width: 100%;
+    background: #cde1f8;
+    position: relative;
+    margin-bottom: 25px;
+}
+
+.about-content .info .skills .progress-line span{
+    position: absolute;
+    height: 100%;
+    background: #0078ff;
+}
+
+.about-content .info .skills .progress-line .html{
+    width: 95%;
+}
+
+.about-content .info .skills .progress-line .css{
+    width: 85%;
+}
+
+.about-content .info .skills .progress-line .javascript{
+    width: 75%;
+}
+
+.about-content .info .skills .progress-line .php{
+    width: 70%;
+}
+
+.about-content .aboutme{
+    width: 50%;
+    padding: 0 20px;
+}
+
+.about-content .aboutme h5{
+    font-size: 2rem;
+    position: relative;
+    font-weight: 500;
+    margin-bottom: 2.5rem;
+}
+
+.about-content .aboutme h5::before{
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -10px;
+    width: 80px;
+    height: 4px;
+    background: #0078ff;
+}
+
+.about-content .aboutme p{
+    font-weight: 300;
+    margin-bottom: 15px;
+    font-size: 20px;
+}
+
+/* services section styling */
+.services{
+    background: #111;
+    color: white;
+}
+
+.services .services-content{
+    margin-top: 2rem;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.services .services-content .card{
+    width: 330px;
+    text-align: center;
+    background: #222;
+    padding: 20px 15px;
+    margin-bottom: 30px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.services .services-content .card:hover{
+    background: #0078ff;
+}
+
+.services .services-content .card .card-content{
+    transition: 0.3s;
+}
+
+.services .services-content .card:hover .card-content{
+    transform: scale(1.07);
+}
+
+.services .services-content .card .card-content .icon{
+    padding: 5px 0;
+    color: white;
+}
+
+.services .services-content .card .card-content .icon i{
+    font-size: 5rem;
+}
+
+.services .services-content .card .card-content .card-title{
+    padding: 5px 0;
+    font-size: 25px;
+    font-weight: 500;
+    color: #0078ff;
+}
+
+.services .services-content .card:hover .card-content .card-title{
+    color: white;
+}
+
+
+/* portfolio section styling */
+.portfolio-content{
+    margin-top: 2rem;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.portfolio-content .card{
+    width: 330px;
+    background: white;
+    box-shadow: 0 13px 8px -10px rgb(0 0 0 / 10%);
+    margin-bottom: 30px;
+}
+
+.portfolio-content .card .photo{
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+}
+
+.portfolio-content .card .photo img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: 0.5s;
+}
+
+.portfolio-content .card:hover .photo img{
+    transform: scale(1.2);
+}
+
+.portfolio-content .card .info{
+    width: 100%;
+    padding: 15px;
+}
+
+.portfolio-content .card .info h3{
+    margin-bottom: 10px;
+}
+
+.portfolio-content .card .info .category{
+    color: #0078ff;
+}
+
+/* blog section styling */
+.blog-content{
+    margin-top: 2rem;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.blog-content .card{
+    width: 340px;
+    box-shadow: 0 13px 8px -10px rgb(0 0 0 / 10%);
+    margin-bottom: 30px;
+    border-radius: 5px;
+    border: 1px solid rgba(0,0,0,0.125);
+}
+
+.blog-content .card .photo{
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+}
+
+.blog-content .card .photo img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: 0.5s;
+}
+
+.blog-content .card:hover .photo img{
+    transform: scale(1.2);
+}
+
+.blog-content .card .info{
+    width: 100%;
+    padding: 30px 20px 20px 20px;
+    position: relative;
+}
+
+.blog-content .card .info h3{
+    margin-bottom: 10px;
+}
+
+.blog-content .card .info .category{
+    position: absolute;
+    left: 50%;
+    top: -14px;
+    transform: translate(-50px);
+    border-radius: 5px;
+    background: #0078ff;
+    color: white;
+    padding: 5px 10px;
+    z-index: 105;
+}
+
+.blog-content .card .info p{
+    color: rgba(0,0,0,0.6);
+}
+
+.blog-content .card .author{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: rgba(0,0,0,0.03);
+    border-top: 1px solid rgba(0,0,0,0.125);
+}
+
+.blog-content .card .author .name{
+    display: flex;
+    align-items: center;
+}
+
+.blog-content .card .author .name img{
+    width: 30px;
+    margin-right: 10px;
+    border-radius: 50%;
+}
+
+/* contact section styling */
+.contact{
+    position: relative;
+    color: white;
+    width: 100%;
+    background: url(images/overlay-bg.jpg) center center/cover no-repeat;
+    background-attachment: fixed;
+    z-index: 0;
+    padding-bottom: 30px;
+}
+
+.contact .overlay{
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: #0078ff;
+    opacity: 0.7;
+    z-index: -1;
+    pointer-events: none;
+}
+
+.contact .contact-content{
+    background: white;
+    color: black;
+    z-index: 100;
+    width: 100%;
+    padding: 2.5rem;
+    display: flex;
+}
+
+.contact .contact-content .heading{
+    font-size: 2rem;
+    font-weight: 500;
+}
+
+.contact .contact-content .line{
+    margin: 0;
+    width: 100px;
+    height: 4px;
+    margin-top: 12px;
+    margin-bottom: 25px;
+}
+
+.contact .contact-content .message{
+    width: 50%;
+    padding: 0 15px;
+}
+
+.contact .contact-content .message .field{
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.contact .contact-content .message .field input,
+.contact .contact-content .message .field textarea{
+    width: 100%;
+    height: 40px;
+    border: 1px solid #888;
+    outline: none;
+    border-radius: 5px;
+    padding-left: 15px;
+    font-size: 16px;
+}
+
+.contact .contact-content .message .field textarea{
+    height: 100px;
+    padding-top: 5px;
+}
+
+.contact .contact-content .message button{
+    padding: 15px 25px;
+    background: #0078ff;
+    color: white;
+    font-size: 20px;
+    border-radius: 10px;
+    outline: none;
+    border: none;
+    cursor: pointer;
+}
+
+.contact .contact-content .gettouch{
+    width: 50%;
+    padding: 0 15px;
+}
+
+.contact .contact-content .gettouch p{
+    color: rgba(0,0,0,0.6);
+    font-weight: 300;
+    margin-bottom: 20px;
+    font-size: 20px;
+    line-height: 1.5;
+}
+
+.contact .contact-content .gettouch .info{
+    margin-bottom: 15px;
+}
+
+.contact .contact-content .gettouch .info i{
+    font-size: 18px;
+    color: #0078ff;
+    margin-right: 15px;
+}
+
+.contact .contact-content .gettouch .social{
+    width: 100%;
+}
+
+.contact .contact-content .gettouch .social i{
+    width: 45px;
+    font-size: 25px;
+    color: white;
+    background: #444;
+    padding: 10px;
+    text-align: center;
+    margin: 20px 5px 0 0;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: 0.5s;
+} 
+
+.contact .contact-content .gettouch .social i:hover{
+    background: #0078ff;
+    transform: translateY(-10px);
+}
+
+.contact .footer{
+    margin-top: 35px;
+}
+
+.contact .footer p{
+    text-align: center;
+    font-size: 18px;
+}
+
+.contact .footer p a{
+    text-transform: none;
+    color: white;
+}
+
+/* responsive styling start here */
+@media (max-width:1024px){
+    .navbar,
+    .navbar.sticky{
+        padding: 0.5rem 1.5rem;
+    }
+
+    .about .container{
+        padding: 0 1.5rem;
+    }
+
+    .contact .container{
+        padding: 0 1.5rem;
+    }
+}
+
+@media (max-width:890px){
+    .about .container{
+        padding: 0 1rem;
+    }
+
+    .about-content{
+        display: block;
+        padding: 25px;
+    }
+
+    .about-content .info{
+        width: 100%;
+        display: flex;
+        padding: 0;
+    }
+
+    .about-content .aboutme{
+        width: 100%;
+        padding: 0;
+    }
+}
+
+@media (max-width:768px){
+    .navbar,
+    .navbar.sticky{
+        padding: 0.5rem 2.5rem;
+    }
+
+    .navbar .menu{
+        position: fixed;
+        height: 100vh;
+        width: 100%;
+        left: -100%;
+        top: 0;
+        background: #0078ff;
+        color: white;
+        text-align: center;
+        padding-top: 50px;
+        transition: 0.5s;
+    }
+
+    .navbar .menu.active{
+        left: 0;
+    }
+
+    .navbar .menu li{
+        display: block;
+        margin: 0;
+    }
+
+    .navbar .menu li a{
+        display: inline-block;
+        margin: 20px 0;
+        font-size: 25px;
+    }
+
+    .navbar .menu li a:hover::before{
+        width: 0vh;
+    }
+
+    .navbar .menu li a,
+    .navbar.sticky .menu li a{
+        color: white;
+    }
+
+    .navbar .menu-btn{
+        display: block;
+        z-index: 999;
+    }
+
+    .navbar.sticky .menu-btn i{
+        color: black;
+    }
+
+    .navbar .menu-btn i.active:before{
+        content: "\f00d";
+    }
+
+    .navbar.sticky .menu-btn i.active{
+        color: white;
+    }
+
+    .home .home-content h1{
+        text-align: center;
+        padding: 0 20px;
+        font-size: 3.2rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .home .home-content span{
+        font-size: 40px;
+    }
+
+    .contact .container{
+        padding: 0 15px;
+    }
+
+    .contact .contact-content{
+        display: block;
+    }
+
+    .contact .contact-content .message{
+        width: 100%;
+        padding: 0;
+        margin-bottom: 30px;
+    }
+
+    .contact .contact-content .message button{
+        padding: 10px 15px;
+    }
+
+    .contact .contact-content .gettouch{
+        width: 100%;
+        padding: 0;
+    }
+}
+
+@media (max-width:500px){
+    .home .home-content h1{
+        font-size: 2.5rem;
+    }
+
+    .home .home-content span{
+        font-size: 30px;
+    }
+
+    .about-content .info .personal{
+        display: block;
+    }
+
+    .about-content .info .personal .photo{
+ width: 100%;
+        margin-bottom: 20px;
+    }
+
+    .about-content .info .personal .name{
+        width: 100%;
+    }
+}
+
+</style>
+<script>
+var typing = new Typed (".typing",{
+
+    strings : ["Web Developer", "Youtuber", "Web Designer", "Blogger", "Freelancer"],
+    typeSpeed:100,
+    backSpeed :60,
+    loop:true
+
+});
+
+// sticky navbar
+window.onscroll = function(){
+
+    var navbar = document.getElementById("navbar");
+
+    if(window.scrollY > 55){
+        navbar.classList.add("sticky");
+    }
+    else{
+        navbar.classList.remove("sticky");
+    }
+
+    // scroll to top
+    let button = document.getElementById("btn");
+
+    if(document.documentElement.scrollTop > 90){
+        button.style.display = "block";
+    }
+    else{
+        button.style.display = "none";
+    }
+
+};
+
+function scrolltoTop(){
+    document.documentElement.scrollTop = 0;
+}
+
+// menu toggle bar
+function menu(){
+    let menu = document.getElementById("menu");
+    let menubar = document.querySelector(".menu-btn i");
+
+    menu.classList.toggle("active");
+    menubar.classList.toggle("active");
+}
+
+</script>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>DevFolio Website - Coding Power</title>
+
+    <!-- typed.js  -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.12/typed.min.js"></script>
+
+    <!-- font awesome link -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+
+    <!-- scroll to top button -->
+    <button class="scrollbtn" id="btn" type="button" onclick="scrolltoTop()"><i class="fa fa-arrow-up"></i></button>
+
+    <!-- navbar code start here -->
+    <nav class="navbar" id="navbar">
+        <div class="logo">
+            <a href="#home">RANJAN GR</a>
+        </div>
+        <ul class="menu" id="menu">
+            <li><a href="#home" onclick="menu()">HOME</a></li>
+            <li><a href="#about" onclick="menu()">ABOUT </a></li>
+            <li><a href="#services" onclick="menu()">SERVICES</a></li>
+            <li><a href="#portfolio" onclick="menu()">PORTFOLIO</a></li>
+            <li><a href="#blog" onclick="menu()">MY BLOG</a></li>
+            <li><a href="#contact" onclick="menu()">CONTACT</a></li>
+        </ul>
+        <div class="menu-btn" onclick="menu()"><i class="fa fa-bars"></i></div>
+    </nav>
+
+    <!-- home section start here -->
+    <div class="home" id="home">
+        <div class="home-content">
+            <h1 class="name" >RJ InfoTech</h1>
+            <p><span class="typing"></span></p>
+        </div>
+    </div>
+    
+<!-- about section start here -->
+<section class="about" id="about">
+    <div class="container">
+        <h3 class="title">ABOUT</h3>
+        <div class="about-content">
+            <div class="info">
+                <div class="personal">
+                    <div class="photo">
+                        <img src="images/testimonial-2.jpg" alt="">
+                    </div>
+                    <div class="name">
+                        <p><span style="color:blue;">Name :</span> RANJAN GR</p>
+                        <p><span style="color:blue;">Profile :</span> Full Stack Developer</p>
+                        <p><span style="color:blue;">Email:</span>Ranjanmalode2001@gmail.com</p>
+                        <p><span style="color:blue;">Phone :</span> 9620756792</p>
+                    </div>
+                </div>
+                </section>
+ 
+    <!-- services section start here -->
+    <section class="services" id="services">
+        <div class="container">
+            <h3 class="title">SERVICES</h3>
+            <div class="line"></div>
+            <div class="services-content">
+                <div class="card">
+                    <div class="card-content">
+                        <div class="icon"><i class="fa fa-code"></i></div>
+                        <div class="card-title">Web Development</div>
+                        <p></p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-content">
+                        <div class="icon"><i class="fa fa-mobile"></i></div>
+                        <div class="card-title">App Development</div>
+                        <p></p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-content">
+                        <div class="icon"><i class="fa fa-paint-brush"></i></div>
+                        <div class="card-title">Web Design</div>
+                        <p></p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-content">
+                        <div class="icon"><i class="fa fa-laptop"></i></div>
+                        <div class="card-title">Responsive Design</div>
+                        <p></p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-content">
+                        <div class="icon"><i class="fa fa-line-chart"></i></div>
+                        <div class="card-title">Advertising</div>
+                        <p></p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-content">
+                        <div class="icon"><i class="fa fa-wordpress"></i></div>
+                        <div class="card-title">Wordpress</div>
+                        <p></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- portfolio section start here -->
+    <section class="portfolio" id="portfolio">
+        <div class="container">
+            <h3 class="title">Portfolio</h3>
+            <div class="line"></div>
+            <div class="portfolio-content">
+                <div class="card">
+                    <div class="card-content">
+                        <div class="photo">
+                            <img src="https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&q=60&w=500&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MzF8fHRyYXZlbHxlbnwwfHwwfHx8MA%3D%3D" alt="">
+                        </div>
+                        <div class="info">
+                            <h3>Project 1</h3>
+                            <p><span class="category">Web Design</span> /TRAVEL TIPS WEBSITE</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-content">
+                        <div class="photo">
+                            <img src="https://plus.unsplash.com/premium_photo-1661593486413-d279b1a02e28?auto=format&fit=crop&q=60&w=500&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8YXBwJTIwZGVzaWdufGVufDB8fDB8fHww" alt="">
+                        </div>
+                        <div class="info">
+                            <h3>Project 2</h3>
+                            <p><span class="category">APP Design</span> /APP</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-content">
+                        <div class="photo">
+                            <img src="https://plus.unsplash.com/premium_photo-1683133921464-c8c3710fa709?auto=format&fit=crop&q=60&w=500&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTN8fGFwcCUyMGRlc2lnbnxlbnwwfHwwfHx8MA%3D%3D" alt="">
+                        </div>
+                        <div class="info">
+                            <h3>Project 3</h3>
+                            <p><span class="category">APP Design</span> /FLIGHT TICKET BOOKING APP</p>
+                        </div>
+                    </div>
+                </div>
+    </section>
+
+    <!-- blog section start here -->
+    <section class="blog" id="blog">
+        <div class="container">
+            <h3 class="title">MY BLOG</h3>
+            <div class="line"></div>
+            <div class="blog-content">
+                <div class="card">
+                    <div class="card-content">
+                        <div class="photo">
+                            <img src="https://media.istockphoto.com/id/1371339413/photo/co-working-team-meeting-concept-businessman-using-smart-phone-and-digital-tablet-and-laptop.webp?b=1&s=170667a&w=0&k=20&c=GnW36mPEYr3TRpPZNLtT75u8v2HOczvRxGckWUN3hVg=" alt="">
+                        </div>
+                        
+                        <div class="info">
+                            <h3>ME</h3>
+                            <div class="category">Developer</div>
+                            <p></p>
+                        </div>
+                        <div class="author">
+                            <div class="name">
+                                <img src="" alt="">
+                    
+                            </div>
+                            <div class="date">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-content">
+                        <div class="photo">
+                            <img src="https://media.istockphoto.com/id/1291971619/photo/web-development-and-web-design-concept-in-dark-blue-background-programming-for-internet.webp?b=1&s=170667a&w=0&k=20&c=ujn9Hw5hBZQJyYaiOVdhB4Vw5Zz1msJmY_qpr8h4IDs=" alt="">
+                        </div>
+                        <div class="info">
+                            <h3>Web Design Blog</h3>
+                            <div class="category">Web Design</div>
+                           
+                        </div>
+                        <div class="author">
+                            <div class="name">
+                                <img src="" alt="">
+                        
+                            </div>
+                            <div class="date">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-content">
+                        <div class="photo">
+                            <img src="https://images.unsplash.com/photo-1559028012-481c04fa702d?auto=format&fit=crop&q=60&w=500&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8d2ViJTIwZGVzaWdufGVufDB8fDB8fHww" alt="">
+                        </div>
+                        <div class="info">
+                            <h3>Web Design Blog</h3>
+                            <div class="category">Web Design</div>
+                            
+                        </div>
+                        <div class="author">
+                            <div class="name">
+                                <img src="images/testimonial-2.jpg" alt="">
+                                
+                            </div>
+                            <div class="date">
+                            
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- contact section start here -->
+    <section class="contact" id="contact">
+        <div class="overlay"></div>
+        <div class="container">
+            <div class="contact-content">
+                <div class="message">
+                    <form>
+                        <h3 class="heading">Send Message us</h3>
+                        <div class="line"></div>
+                        <div class="field">
+                            <input type="text" placeholder="Your Name">
+                        </div>
+                        <div class="field">
+                            <input type="email" placeholder="Your Email">
+                        </div>
+                        <div class="field">
+                            <input type="text" placeholder="Subject">
+                        </div>
+                        <div class="field">
+                            <textarea cols="30" rows="10" placeholder="Message"></textarea>
+                        </div>
+                        <button type="submit">Send Message</button>
+                    </form>
+                </div>
+                <div class="gettouch">
+                    <h3 class="heading">Get in Touch</h3>
+                    <div class="line"></div>
+                    <div class="info"><i class="fa fa-map-marker"></i>KARNATAKA BANGALORE</div>
+                    <div class="info"><i class="fa fa-phone"></i>9620756792</div>
+                    <div class="info"><i class="fa fa-envelope"></i>Ranjanmalode2001@gmail.com</div>
+                    <div class="social">
+                        <i class="fa fa-facebook"></i>
+                        <i class="fa fa-instagram"></i>
+                        <i class="fa fa-twitter"></i>
+                        <i class="fa fa-youtube-play"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <footer class="footer">
+            <p>© Copyright RJinfo97. All Rights Reserved</p>
+            <p>Designed by RANJAN GR</p>
+        </footer>
+    </section>
+    
+    <script src="main.js"></script>
+</body>
+</html>
+
